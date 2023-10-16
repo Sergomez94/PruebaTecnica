@@ -13,21 +13,37 @@ public class PruebaTecnicaSteps {
 	PruebaTecnicaPageObject pruebaTecnicaPageObject;
 	
 	
-	
-	@Step("^Me encuentro en la pagina$")
-	public void meEncuentroEnLaPagina() {
-		pruebaTecnicaPageObject.meEncuentroEnLaPagina();
+	@Step("^Ingresar al portal y realizar autenticacion$")
+	public void ingresarAlPortalYRealizarAutenticacion(Map <String,String> data){
+		pruebaTecnicaPageObject.ingresarAlPortalYRealizarAutenticacion(data);
 	}
 	
-	@Step("^selecciono la opcion transacciones en linea$")
-	public void seleccionoLaOpcionLogin() throws Throwable {
-		pruebaTecnicaPageObject.seleccionoLaOpcionLogin();
-	}
+	@Step("^agregar libro Programming JavaScript a coleccion$") 
+	public void agregarLibroProgrammingJavaScriptAColeccion(Map <String,String> data){
+		pruebaTecnicaPageObject.agregarLibroProgrammingJavaScriptAColeccion(data);
+		}
+	@Step("^agregar libro Understanding ECMAScript a coleccion$")
+	public void agregarLibroUnderstandingECMAScriptAColeccion(Map <String,String> data){
+		pruebaTecnicaPageObject.agregarLibroUnderstandingECMAScriptAColeccion(data);
+		}
 	
-
+	@Step("^eliminar libro Programming JavaScript de coleccion$") 
+	public void eliminarLibroProgrammingJavaScriptDeColeccion() throws Throwable{
+		pruebaTecnicaPageObject.eliminarLibroProgrammingJavaScriptDeColeccion();
+		}
 	
-	@Step("^lleno el formulario de credenciales$") 
-	public void llenoElFormularioDeCredenciales(Map <String,String> data){
-		pruebaTecnicaPageObject.llenoElFormularioDeCredenciales(data);
+	@Step("^eliminar cuenta y validar$") 
+	public void eliminarCuentaYValidar(Map <String,String> data){
+		pruebaTecnicaPageObject.eliminarCuentaYValidar(data);
+		}
+	
+	@Step("^extraer texto de nested frames$") 
+	public void extraerTextoDeNestedFrames(){
+		pruebaTecnicaPageObject.extraerTextoDeNestedFrames();
+		}
+	
+	@Step("^llenar formulario modulo practice form$")
+	public void llenarFormularioModuloPracticeForm(Map <String,String> data){
+		pruebaTecnicaPageObject.llenarFormularioModuloPracticeForm(data);
 		}
 }

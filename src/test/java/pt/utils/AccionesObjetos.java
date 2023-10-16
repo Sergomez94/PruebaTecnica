@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-
+import org.openqa.selenium.interactions.Actions;
 
 import net.serenitybdd.core.pages.PageObject;
 import net.thucydides.core.environment.SystemEnvironmentVariables;
@@ -20,23 +20,20 @@ import org.openqa.selenium.JavascriptExecutor;
 
 public class AccionesObjetos extends PageObject {
 
-	public AccionesObjetos() {
-			
-	}
+
 	
 	private static final Logger LOGGER = Logger.getLogger(AccionesObjetos.class.getName());
 	
-	public ChromeOptions opt=new ChromeOptions().addArguments("--remote-allow-origins=*");
+//	public ChromeOptions opt=new ChromeOptions().addArguments("--remote-allow-origins=*");
 	
-	WebDriver driver= new ChromeDriver(opt);
-	
+
 	
 	public void escribirLog(String texto) {
 		LOGGER.info("Escribirlog: "+texto);
 	}
 	
 	public String obtenerTituloPagina() {
-		return driver.getTitle();
+		return getDriver().getTitle();
 	}
 	
 
@@ -56,24 +53,24 @@ public class AccionesObjetos extends PageObject {
 	public void abrirUrl() {
 		
 		
-		driver.get(getSerenityProperties("webdriver.base.url"));
+		getDriver().get(getSerenityProperties("webdriver.base.url"));
 		String expectedTitle= getSerenityProperties("webdriver.title.page");
-		driver.manage().window().maximize();  // maximizar pantalla
-		waitFor(10).seconds();
+		getDriver().manage().window().maximize();  // maximizar pantalla
+		waitFor(5).seconds();
 	
 	}
 	
 	
 	public void cerrarDriver() {
 		
-		driver.quit();
+		getDriver().quit();
 	}
 	
 	public WebElement obtenerElementos(String[] dato) {
 		String identificador=dato[0];
 		String valor= dato[1];
 		WebElement elemento=null;
-		WebDriverWait wait= new WebDriverWait(driver, getImplicitWaitTimeout());
+		WebDriverWait wait= new WebDriverWait(getDriver(), getImplicitWaitTimeout());
 		
 		switch(identificador.toLowerCase()) {
 				case "id":
@@ -103,8 +100,17 @@ public class AccionesObjetos extends PageObject {
 		elemento.sendKeys(texto);
 	}
 	
+	public void moverAElemento(String[] Valores) {
+		WebElement elemento= obtenerElementos(Valores);
+		Actions actions = new Actions(getDriver());
+        actions.moveToElement(elemento, 0, 0);
+
+
+	
+	}
+	
 	public void cambiarFrame(String frame) {
-		driver.switchTo().frame(frame);
+		getDriver().switchTo().frame(frame);
 	}
 	
 	public void tiempoEsperaImplicito(int tiempo) {
@@ -113,13 +119,13 @@ public class AccionesObjetos extends PageObject {
 	
 	public void tiempoEsperaElemento(String[] valores) {
 		WebElement elemento= obtenerElementos(valores);
-		WebDriverWait wait= new WebDriverWait(driver, getImplicitWaitTimeout());
+		WebDriverWait wait= new WebDriverWait(getDriver(), getImplicitWaitTimeout());
 		wait.until(ExpectedConditions.visibilityOf(elemento));
 		
 	}
 	
 	public void hacerScroll(String x, String y) {
-		driver.switchTo().defaultContent();
+		getDriver().switchTo().defaultContent();
 		((JavascriptExecutor) getDriver()).executeScript("window.scroll("+x+","+y+")");
 	}
 }

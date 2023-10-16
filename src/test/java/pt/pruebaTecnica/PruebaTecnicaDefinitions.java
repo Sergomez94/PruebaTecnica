@@ -2,6 +2,7 @@ package pt.pruebaTecnica;
 
 import java.util.Map;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -18,24 +19,49 @@ public class PruebaTecnicaDefinitions {
 	@Steps
 	PruebaTecnicaSteps pruebaTecnicaSteps;
 	
-	@Given("^Me encuentro en la pagina$")
-	public void meEncuentroEnLaPagina() {
-		pruebaTecnicaSteps.meEncuentroEnLaPagina();
-	}
-
-	@When("^selecciono la opcion transacciones en linea$")
-	public void seleccionoLaOpcionLogin() throws Throwable {
-		pruebaTecnicaSteps.seleccionoLaOpcionLogin();
-	}
-
-
-
-	@Then("^lleno el formulario de credenciales$") 
-	public void llenoElFormularioDeCredenciales(Map <String,String> data){
+	@Given("^Ingresar al portal y realizar autenticacion$")
+	public void ingresarAlPortalYRealizarAutenticacion(Map <String,String> data){
 		String FilaDataExcel= data.get("keyFilaDataExcel");
-		String feature= data.get("keyFeature");
-		data=dataExcel.leerFilaDataExcel(feature,Integer.valueOf(FilaDataExcel));
-		pruebaTecnicaSteps.llenoElFormularioDeCredenciales(data);
+		data=dataExcel.leerFilaDataExcel("pruebaTecnica",Integer.valueOf(FilaDataExcel));
+		pruebaTecnicaSteps.ingresarAlPortalYRealizarAutenticacion(data);
+	}
+
+	@When("^agregar libro Programming JavaScript a coleccion$") 
+	public void agregarLibroProgrammingJavaScriptAColeccion (Map <String,String> data){
+		String FilaDataExcel= data.get("keyFilaDataExcel");
+		data=dataExcel.leerFilaDataExcel("pruebaTecnica",Integer.valueOf(FilaDataExcel));
+		pruebaTecnicaSteps.agregarLibroProgrammingJavaScriptAColeccion(data);
+		}
+
+	@And("^agregar libro Understanding ECMAScript a coleccion$")
+	public void agregarLibroUnderstandingECMAScriptAColeccion(Map <String,String> data){
+		String FilaDataExcel= data.get("keyFilaDataExcel");
+		data=dataExcel.leerFilaDataExcel("pruebaTecnica",Integer.valueOf(FilaDataExcel));
+		pruebaTecnicaSteps.agregarLibroUnderstandingECMAScriptAColeccion(data);
+		}
+
+	@Then("^eliminar libro Programming JavaScript de coleccion$") 
+	public void eliminarLibroProgrammingJavaScriptDeColeccion() throws Throwable{
+		pruebaTecnicaSteps.eliminarLibroProgrammingJavaScriptDeColeccion();
+		}
+
+	@And("^eliminar cuenta y validar$") 
+	public void eliminarCuentaYValidar(Map <String,String> data){
+		String FilaDataExcel= data.get("keyFilaDataExcel");
+		data=dataExcel.leerFilaDataExcel("pruebaTecnica",Integer.valueOf(FilaDataExcel));
+		pruebaTecnicaSteps.eliminarCuentaYValidar(data);
+		}
+
+	@When("^extraer texto de nested frames$") 
+	public void extraerTextoDeNestedFrames(){
+		pruebaTecnicaSteps.extraerTextoDeNestedFrames();
+		}
+
+	@Then("^llenar formulario modulo practice form$")
+	public void llenarFormularioModuloPracticeForm(Map <String,String> data){
+		String FilaDataExcel= data.get("keyFilaDataExcel");
+		data=dataExcel.leerFilaDataExcel("pruebaTecnica",Integer.valueOf(FilaDataExcel));
+		pruebaTecnicaSteps.llenarFormularioModuloPracticeForm(data);
 		}
 
 

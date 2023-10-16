@@ -2,10 +2,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-
-    <groupId>com.autentia</groupId>
-    <artifactId>serenity-cucumber-bdd</artifactId>
+      <modelVersion>4.0.0</modelVersion>
+   
+    <groupId>pt</groupId>
+    <artifactId>PruebaTecnica</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -69,7 +69,7 @@
                 <version>2.19.1</version>
                 <configuration>
                     <includes>
-                        <include>RunTest.java</include>
+                        <include>RunnerCucumber.java</include>
                     </includes>
                     <reuseForks>true</reuseForks>
                     <!--<forkCount>2</forkCount>-->
@@ -95,7 +95,7 @@
             <plugin>
                 <groupId>net.serenity-bdd.maven.plugins</groupId>
                 <artifactId>serenity-maven-plugin</artifactId>
-                <version>1.7.2</version>
+                <version>3.6.21</version>
                 <executions>
                     <execution>
                         <id>serenity-reports</id>
